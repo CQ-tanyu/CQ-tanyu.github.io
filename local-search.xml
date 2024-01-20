@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>尝鲜TryHackMe</title>
+    <link href="/2024/01/19/%E5%B0%9D%E9%B2%9CTryHackMe/"/>
+    <url>/2024/01/19/%E5%B0%9D%E9%B2%9CTryHackMe/</url>
+    
+    <content type="html"><![CDATA[<p><strong>这里直接将教程搬运过来了</strong></p><hr><p>我的第一个黑客</p><p>单击“启动计算机”按钮。一旦加载到浏览器的 Split View 中，您将可以访问一台机器，您将用来破解一个名为 FakeBank 的虚假银行应用程序。如果您没有看到本机出现，请使用此页面右上角的蓝色“显示分屏浏览”按钮。</p><p>我们将使用一个名为“GoBuster”的命令行应用程序来暴力破解 FakeBank 的网站以查找隐藏的目录和页面。GoBuster 将获取潜在页面或目录名称的列表，并尝试使用每个页面或目录名称访问网站;如果该页面存在，它会告诉您。</p><p><strong>步骤1）打开终端</strong></p><p>终端，也称为命令行，允许我们在不使用图形用户界面的情况下与计算机进行交互。 在计算机上，使用终端图标打开终端：</p><p><strong>步骤2）查找隐藏的网站页面</strong></p><p>大多数公司都会有一个管理门户页面，让员工可以访问日常运营的基本管理控制。对于银行来说，员工可能需要在客户账户之间转账。通常，这些页面不会设为私有，因此攻击者可以找到显示或授予管理员控件或敏感数据访问权限的隐藏页面。</p><p>在终端中键入以下命令，以使用 GoBuster（命令行安全应用程序）查找 FakeBank 网站上可能隐藏的页面。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gobuster -u http://fakebank.com -w wordlist.txt <span class="hljs-built_in">dir</span><br></code></pre></td></tr></table></figure><p>该命令将运行并显示类似于以下内容的输出：</p><p>GoBuster 命令暴力破解网站页面</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs markup">ubuntu@tryhackme:~/Desktop$ gobuster -u http://fakebank.com -w wordlist.txt dir<br>=====================================================<br>Gobuster v2.0.1<br>=====================================================<br>[+] Mode         : dir<br>[+] Url/Domain   : http://fakebank.com/<br>[+] Threads      : 10<br>[+] Wordlist     : wordlist.txt<br>[+] Status codes : 200,204,301,302,307,403<br>[+] Timeout      : 10s<br>=====================================================<br>2022/04/11 18:23:28 Starting gobuster<br>=====================================================<br>/images (Status: 301)<br>/DIRECTORY_NAME_OUTPUT (Status: 200)<br>=====================================================<br>2022/04/11 18:23:38 Finished<br>=====================================================<br></code></pre></td></tr></table></figure><p>在上面的命令中，用于陈述我们正在扫描的网站，获取一个单词列表进行迭代以查找隐藏页面。<code>-u</code> <code>-w</code></p><p>您将看到 GoBuster 使用列表中的每个单词扫描网站，查找网站上存在的页面。GoBuster 会告诉你它在页面&#x2F;目录名称列表中找到的页面（由状态：200 表示）。</p><p><img src="/img/Thm/Thm_001.png"></p><p><strong>步骤3）入侵银行</strong></p><p>您应该已经找到了一个秘密的银行转账页面，允许您在银行的账户之间转账（&#x2F;bank-transfer）。在机器上的 FakeBank 网站中键入隐藏页面。</p><p>此页面允许攻击者从任何银行账户中窃取资金，这对银行来说是一个重大风险。作为道德黑客，您将（在获得许可的情况下）发现其应用程序中的漏洞，并在黑客利用它们之前将其报告给银行进行修复。</p><p>将 2000 美元从银行账户 2276 转入您的账户（帐号 8881）。</p><p><img src="/img/Thm/Thm_002.png"></p><hr><p><strong>回答以下问题</strong></p><p>如果您的转账成功，您现在应该能够在您的账户页面上看到您的新余额。现在就去那里，确认你拿到钱了！（您可能需要点击“刷新”才能显示更改）</p><p>在您的帐户余额上方，您现在应该会看到一条消息，指示此问题的答案。你能找到你需要的答案吗？</p><p><img src="/img/Thm/Thm_003.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Thm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Thm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python日记-Day02</title>
     <link href="/2024/01/15/Python%E6%97%A5%E8%AE%B0-Day02/"/>
     <url>/2024/01/15/Python%E6%97%A5%E8%AE%B0-Day02/</url>
